@@ -1,10 +1,7 @@
 package com.example.appofertaslaborales.Clases
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.time.LocalDate
 
-@RequiresApi(Build.VERSION_CODES.O)
 class Persona(
     email: String,
     password: String,
@@ -28,6 +25,5 @@ class Persona(
         edad = calcularEdad()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun calcularEdad(): Int = LocalDate.now().year - this.fechaNacimiento.year
 }

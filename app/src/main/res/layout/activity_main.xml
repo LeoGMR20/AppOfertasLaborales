@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/txt_registrarse"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/etConfrimPassword"
-        app:layout_constraintStart_toStartOf="@+id/etConfrimPassword"
-        app:layout_constraintTop_toBottomOf="@+id/etConfrimPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etConfirmarPassword"
+        app:layout_constraintStart_toStartOf="@+id/etConfirmarPassword"
+        app:layout_constraintTop_toBottomOf="@+id/etConfirmarPassword"
         app:layout_constraintVertical_bias="0.516" />
 
     <Switch
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etCelular" />
 
     <EditText
-        android:id="@+id/etConfrimPassword"
+        android:id="@+id/etConfirmarPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
