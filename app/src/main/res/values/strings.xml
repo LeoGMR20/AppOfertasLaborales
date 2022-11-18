@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">AppOfertasLaborales</string>
+    <string name="title_activity_google_maps">GoogleMapsActivity</string>
+
+    <!--Registro de cuenta-->
+    <string name="txt_registrarse_form">Formulario de registro</string>
+    <string name="txt_registrarse">Registrarse</string>
+    <string name="txt_persona_o_entidad">Registrarse como: Persona real / Institución</string>
+    <!--* Persona-->
+    <string name="txt_nombres">Nombres</string>
+    <string name="txt_nombre">Nombre</string>
+    <string name="txt_apellidos">Apellidos</string>
+    <string name="txt_fecha_nac">Fecha de nacimiento</string>
+    <string name="txt_email">Email</string>
+    <string name="txt_profesion">Profesión</string>
+    <string name="txt_password">Contraseña</string>
+    <string name="txt_confirmar_password">Confirmar contraseña</string>
+    <string name="txt_celular">Número celular</string>
+    <string name="txt_area">Área</string>
 </resources>
