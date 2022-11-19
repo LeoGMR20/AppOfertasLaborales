@@ -17,4 +17,13 @@
     <string name="txt_confirmar_password">Confirmar contraseña</string>
     <string name="txt_celular">Número celular</string>
     <string name="txt_area">Área</string>
+    <string name="title_activity_ubicacion_institucion_maps">UbicacionInstitucionMapsActivity</string>
+
+    <!--Nuevo empleo-->
+
+    <string name="txt_nuevo_empleo">Nuevo empleo</string>
+
+    <!---Info Window-->
+    <string name="Img_infoWindow_des">Imagen con símbolo de alerta</string>
+    <string name="txt_presentarse">[Presentarse]</string>
 </resources>

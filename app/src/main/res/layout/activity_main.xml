@@ -39,7 +39,8 @@
         android:text="@string/txt_persona_o_entidad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegistro" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRegistro"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <EditText
         android:id="@+id/etEmail"

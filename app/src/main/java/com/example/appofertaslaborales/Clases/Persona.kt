@@ -12,6 +12,7 @@ class Persona(
     numCelular: String
 ): Usuario(), Serializable {
     //Getters
+
     var nombres: String = ""
         get() { return nombres }
     var apellidos: String = ""
