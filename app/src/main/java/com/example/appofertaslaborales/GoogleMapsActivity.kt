@@ -19,7 +19,6 @@ import com.example.appofertaslaborales.Clases.Empleo
 import com.example.appofertaslaborales.Clases.Institucion
 import com.example.appofertaslaborales.Clases.Persona
 import com.example.appofertaslaborales.Constantes.empleo1
-import com.example.appofertaslaborales.Constantes.empleo2
 import com.example.appofertaslaborales.Constantes.empleo3
 import com.example.appofertaslaborales.Constantes.lapaz
 
@@ -78,7 +77,6 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback,
             long = intent.getDoubleExtra("long2",lapaz.longitude)
             tit = intent.getStringExtra("tit").toString()
             des = intent.getStringExtra("des").toString()
-            //setMarkerEmpleo1()
         }
     }
 
@@ -111,13 +109,25 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
             )
         }
+        //setMarkerEmpleo2(empleo1,-16.51065389615145,-68.1280593211182)
         mMap.addMarker(MarkerOptions()
             .title(empleo1.titulo)
-            .snippet("")
+            .snippet("Empresa: Insti S.A\n" +
+                    "Descripción: ${empleo1.Descripcion}")
             .position(LatLng(-16.51065389615145,-68.1280593211182))
             .draggable(false)
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
         )
+
+        if(intent.getIntExtra("user",0) == 2){
+            mMap.addMarker(MarkerOptions()
+                .title(tit)
+                .snippet(des)
+                .position(LatLng(-16.51065389615145,-68.1280593211182))
+                .draggable(false)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+            )
+        }
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
@@ -136,16 +146,14 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback,
         )
     }
 
-    private fun setMarkerEmpleo2(emp: Empleo) {
-        lat2 = emp.institucion.ubicacion!!.latitude
-        long2 = emp.institucion.ubicacion!!.longitude
+    private fun setMarkerEmpleo2(emp: Empleo, lt: Double, lg: Double) {
         mMap.addMarker(MarkerOptions()
             .title(emp.titulo)
             .snippet("""
                 Empresa: ${emp.institucion.nombre}
                 Descripción: ${emp.Descripcion}
             """.trimIndent())
-            .position(LatLng(lat2, long2))
+            .position(LatLng(lt, lg))
             .draggable(false)
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
         )
@@ -246,6 +254,15 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback,
                 latitud = myLastLocation.latitude
                 longitud = myLastLocation.longitude
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitud,longitud),15f))
+                var pos = LatLng(latitud, longitud)
+                mMap.addMarker(MarkerOptions()
+                    .position(pos)
+                    .title("Ubicación actual")
+                    .snippet("${pos.latitude},\n${pos.longitude}")
+                )?.run {
+                    setIcon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+                }
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos,15f))
             }
         }
     }

@@ -20,7 +20,7 @@ object Constantes {
         """Ingeniero en sistemas egresado
         Conocimientos en: Linux, MongoDB
         
-        """.trimMargin()
+        """.trimMargin(),
     )
     val empleo2 = Empleo(
         Institucion(
