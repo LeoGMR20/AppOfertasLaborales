@@ -125,8 +125,8 @@ class MainActivity : AppCompatActivity() {
                 etCelular.text.toString()
             )
         }
-        val intent = Intent(this, GoogleMapsActivity::class.java)
-        intent.putExtra("obj",institucion)
+        val intent = Intent(this, UbicacionInstitucionMapsActivity::class.java)
+        intent.putExtra("ins", institucion)
         startActivity(intent)
     }
 

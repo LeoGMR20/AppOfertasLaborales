@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng
 
 object Constantes {
     val lapaz = LatLng(-16.48892110589471, -68.11743375119276)
+    const val INTERVAL_TIME = 5000L
     val empleo1 = Empleo(
         Institucion(
             "abc@gmail.com",
@@ -17,6 +18,7 @@ object Constantes {
         "Auxiliar de sistemas",
         """Ingeniero en sistemas egresado
         Conocimientos en: Linux, MongoDB
+        
         """.trimMargin()
     )
     val empleo2 = Empleo(
@@ -31,6 +33,7 @@ object Constantes {
         """Ingeniero en sistemas con 2 años de experiencia
         Conocimientos en: Html, CSS, Js
         Salario: 500$ al mes
+        
         """.trimMargin()
     )
     val empleo3 = Empleo(
@@ -44,6 +47,7 @@ object Constantes {
         "Diseñador gráfico",
         """Diseñador gráfico con 2 años de experiencia
         Salario: 1000$ al mes
+        
         """.trimMargin()
     )
 }

@@ -10,12 +10,52 @@
         android:id="@+id/tvNuevoEmpleo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="@string/txt_registrarse_form"
+        android:layout_marginTop="50dp"
+        android:text="@string/txt_nuevo_empleo"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnNuevoEmpleo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        android:text="@string/txt_registrar"
+        app:layout_constraintEnd_toEndOf="@+id/etDescriptcion"
+        app:layout_constraintStart_toStartOf="@+id/etDescriptcion"
+        app:layout_constraintTop_toBottomOf="@+id/etDescriptcion" />
+
+    <EditText
+        android:id="@+id/etTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/txt_titulo"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/tvNuevoEmpleo"
+        app:layout_constraintStart_toStartOf="@+id/tvNuevoEmpleo"
+        app:layout_constraintTop_toBottomOf="@+id/tvNuevoEmpleo" />
+
+    <EditText
+        android:id="@+id/etDescriptcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/txt_descripcion"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/etTitulo"
+        app:layout_constraintStart_toStartOf="@+id/etTitulo"
+        app:layout_constraintTop_toBottomOf="@+id/etTitulo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
