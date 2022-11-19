@@ -13,7 +13,8 @@ object Constantes {
             "asd123",
             "Insti S.A",
             "Auditoria",
-            "78454112"
+            "78454112",
+            LatLng(-16.503926343777003, -68.1306991207844)
         ),
         "Auxiliar de sistemas",
         """Ingeniero en sistemas egresado
@@ -27,7 +28,8 @@ object Constantes {
             "asd645",
             "DevInc",
             "Desarrollo de software",
-            "78454744"
+            "78454744",
+            LatLng(-16.51065389615145, -68.1280593211182)
         ),
         "Auxiliar de front end developer",
         """Ingeniero en sistemas con 2 años de experiencia
@@ -42,7 +44,8 @@ object Constantes {
             "asd456",
             "Mercadil",
             "Exportaciones",
-            "78454112"
+            "78454112",
+            LatLng(-16.508596465663356, -68.13526341956207)
         ),
         "Diseñador gráfico",
         """Diseñador gráfico con 2 años de experiencia

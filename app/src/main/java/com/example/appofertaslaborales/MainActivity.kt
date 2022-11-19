@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
             )
         }
         val intent = Intent(this, GoogleMapsActivity::class.java)
+        intent.putExtra("user", 1)
         intent.putExtra("obj",persona)
         startActivity(intent)
     }

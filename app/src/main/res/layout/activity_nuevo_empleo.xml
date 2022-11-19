@@ -25,9 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:text="@string/txt_registrar"
-        app:layout_constraintEnd_toEndOf="@+id/etDescriptcion"
-        app:layout_constraintStart_toStartOf="@+id/etDescriptcion"
-        app:layout_constraintTop_toBottomOf="@+id/etDescriptcion" />
+        app:layout_constraintEnd_toEndOf="@+id/etDescripcion"
+        app:layout_constraintStart_toStartOf="@+id/etDescripcion"
+        app:layout_constraintTop_toBottomOf="@+id/etDescripcion" />
 
     <EditText
         android:id="@+id/etTitulo"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvNuevoEmpleo" />
 
     <EditText
-        android:id="@+id/etDescriptcion"
+        android:id="@+id/etDescripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"

@@ -15,8 +15,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.appofertaslaborales.Clases.Empleo
 import com.example.appofertaslaborales.Clases.Institucion
 import com.example.appofertaslaborales.Clases.Persona
+import com.example.appofertaslaborales.Constantes.empleo1
+import com.example.appofertaslaborales.Constantes.empleo2
+import com.example.appofertaslaborales.Constantes.empleo3
 import com.example.appofertaslaborales.Constantes.lapaz
 
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,18 +31,11 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.appofertaslaborales.databinding.ActivityGoogleMapsBinding
 import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import com.google.android.gms.maps.model.Marker
 
-class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
-
-    //Atributos
-
-    companion object {
-        val REQUIERED_PERMISSION_GPS = arrayOf(
-            android.Manifest.permission.ACCESS_COARSE_LOCATION,
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_NETWORK_STATE
-        )
-    }
+class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback,
+    GoogleMap.OnMarkerClickListener{
 
     private var isGPSEnabled = false
     private val PERMISSION_ID = 42
@@ -50,7 +47,13 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityGoogleMapsBinding
     private lateinit var persona: Persona
-    private lateinit var institucion: Institucion
+    private lateinit var institucion4: Institucion
+    private lateinit var tit: String
+    private lateinit var des: String
+    private var lat: Double = 0.0
+    private var long: Double = 0.0
+    private var lat2: Double = 0.0
+    private var long2: Double = 0.0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,17 +66,20 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        if (intent.getSerializableExtra("obj") is Persona) {
-            persona = (intent.getSerializableExtra("obj") as? Persona)!!
-            Toast.makeText(this, persona.email, Toast.LENGTH_SHORT).show()
-        }
-        else {
-            institucion = (intent.getSerializableExtra("obj") as? Institucion)!!
-            Toast.makeText(this, institucion.nombre, Toast.LENGTH_SHORT).show()
-        }
-
         enableGPSServices()
         manageLocation()
+
+        if (intent.getIntExtra("user",0) == 1) {
+            persona = (intent.getSerializableExtra("obj") as? Persona)!!
+        }
+        else if(intent.getIntExtra("user",0) == 2){
+            institucion4 = (intent.getSerializableExtra("obj") as? Institucion)!!
+            lat = intent.getDoubleExtra("lat2",lapaz.latitude)
+            long = intent.getDoubleExtra("long2",lapaz.longitude)
+            tit = intent.getStringExtra("tit").toString()
+            des = intent.getStringExtra("des").toString()
+            //setMarkerEmpleo1()
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -83,7 +89,6 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(lapaz))
 
-
         mMap.uiSettings.apply {
             isZoomControlsEnabled = true // Botones + - zoom in zoom out
             isCompassEnabled = true // la brújula de orientación del mapa
@@ -92,6 +97,58 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             isTiltGesturesEnabled = false // deshabilitar la opción de rotación de la cámara
             isZoomControlsEnabled = false // deshabilita las opciones de zoom con los dedos del mapa
         }
+
+        mMap.setPadding(0,0,0,Utils.dp(64))
+
+        mMap.setOnMarkerClickListener(this)
+        mMap.setOnMapClickListener {
+            //it es la posición donde haces click con tu dedo
+            mMap.addMarker(MarkerOptions()
+                .title("Nueva ubicación Random")
+                .snippet("${it.latitude},\n${it.longitude}")
+                .position(it)
+                .draggable(true)
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+            )
+        }
+        mMap.addMarker(MarkerOptions()
+            .title(empleo1.titulo)
+            .snippet("")
+            .position(LatLng(-16.51065389615145,-68.1280593211182))
+            .draggable(false)
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+        )
+    }
+
+    override fun onMarkerClick(marker: Marker): Boolean {
+        //marker es el marcador al que le estas haciendo click
+        Toast.makeText(this, "${marker.position.latitude}, ${marker.position.longitude}", Toast.LENGTH_LONG).show()
+        return false
+    }
+
+    private fun setMarkerEmpleo1() {
+        mMap.addMarker(MarkerOptions()
+            .title(tit)
+            .snippet(des)
+            .position(LatLng(lat,long))
+            .draggable(false)
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+        )
+    }
+
+    private fun setMarkerEmpleo2(emp: Empleo) {
+        lat2 = emp.institucion.ubicacion!!.latitude
+        long2 = emp.institucion.ubicacion!!.longitude
+        mMap.addMarker(MarkerOptions()
+            .title(emp.titulo)
+            .snippet("""
+                Empresa: ${emp.institucion.nombre}
+                Descripción: ${emp.Descripcion}
+            """.trimIndent())
+            .position(LatLng(lat2, long2))
+            .draggable(false)
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker))
+        )
     }
 
     //HABILITAR PERMISOS DE GPS Y COORDENADAS
@@ -188,7 +245,7 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
             if(myLastLocation != null) {
                 latitud = myLastLocation.latitude
                 longitud = myLastLocation.longitude
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(LatLng(latitud,longitud)))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(latitud,longitud),15f))
             }
         }
     }

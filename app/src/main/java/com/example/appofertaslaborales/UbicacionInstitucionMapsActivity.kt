@@ -17,7 +17,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.appofertaslaborales.Clases.Institucion
 import com.example.appofertaslaborales.Constantes.INTERVAL_TIME
-import com.example.appofertaslaborales.Constantes.lapaz
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -90,14 +89,15 @@ class UbicacionInstitucionMapsActivity : AppCompatActivity(), OnMapReadyCallback
 
         mMap.setOnMarkerClickListener(this)
         mMap.setOnMapClickListener {
-            institucion2.ubicacion = LatLng(it.latitude,it.longitude)
-            nuevoEmpleo()
+            nuevoEmpleo(it.latitude, it.longitude)
         }
     }
 
-    private fun nuevoEmpleo() {
+    private fun nuevoEmpleo(latitude: Double, longitude: Double) {
         val intent2 = Intent(this, NuevoEmpleoActivity::class.java)
         intent2.putExtra("ins2",institucion2)
+        intent2.putExtra("lat",latitude)
+        intent2.putExtra("long",longitude)
         startActivity(intent2)
     }
 
