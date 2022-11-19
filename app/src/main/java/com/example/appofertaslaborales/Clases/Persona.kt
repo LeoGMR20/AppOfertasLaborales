@@ -1,29 +1,38 @@
 package com.example.appofertaslaborales.Clases
 
-import java.time.LocalDate
+import java.io.Serializable
 
 class Persona(
     email: String,
     password: String,
     nombres: String,
     apellidos: String,
-    fechaNacimiento: LocalDate,
+    fechaNacimiento: String,
     profesion: String,
     numCelular: String
-): Usuario() {
-    val fechaNacimiento: LocalDate
+): Usuario(), Serializable {
+    //Getters
+    var nombres: String = ""
+        get() { return nombres }
+    var apellidos: String = ""
+        get() { return apellidos }
+    var profesion: String = ""
+        get() { return profesion }
+    var fechaNacimiento: String
+
+    //Herencia
+
     override var email: String = ""
     override var password: String = ""
     override var numCelular: String = ""
-    var edad: Int? = null
 
     init {
+        this.nombres = nombres
+        this.apellidos = apellidos
+        this.profesion = profesion
         this.email = email
         this.password = password
         this.fechaNacimiento = fechaNacimiento
         this.numCelular = numCelular
-        edad = calcularEdad()
     }
-
-    private fun calcularEdad(): Int = LocalDate.now().year - this.fechaNacimiento.year
 }

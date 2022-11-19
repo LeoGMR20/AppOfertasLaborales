@@ -2,6 +2,9 @@ package com.example.appofertaslaborales
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.example.appofertaslaborales.Clases.Institucion
+import com.example.appofertaslaborales.Clases.Persona
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -25,6 +28,8 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityGoogleMapsBinding
+    private lateinit var persona: Persona
+    private lateinit var institucion: Institucion
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,21 @@ class GoogleMapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        if (intent.getSerializableExtra("obj") is Persona) {
+            persona = (intent.getSerializableExtra("obj") as? Persona)!!
+            if (persona != null) {
+                Toast.makeText(this, persona.email, Toast.LENGTH_SHORT).show()
+            }
+        }
+        else {
+            persona = (intent.getSerializableExtra("obj") as? Persona)!!
+            if (persona != null) {
+                Toast.makeText(this, persona.email, Toast.LENGTH_SHORT).show()
+            }
+        }
+
+
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

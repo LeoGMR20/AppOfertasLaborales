@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import com.example.appofertaslaborales.Clases.Institucion
 import com.example.appofertaslaborales.Clases.Persona
 import com.example.appofertaslaborales.databinding.ActivityMainBinding
 import java.io.Serializable
@@ -87,9 +88,7 @@ class MainActivity : AppCompatActivity() {
     //Función verificar contraseña
 
     private fun verificarPassword(): Boolean {
-        binding.apply {
-            if(etPassword.text.equals(etConfirmarPassword.text)) return true
-        }
+        if(binding.etPassword.text.toString() == binding.etConfirmarPassword.text.toString()) return true
         return false
     }
 
@@ -103,20 +102,32 @@ class MainActivity : AppCompatActivity() {
                 etPassword.text.toString(),
                 etNombres.text.toString(),
                 etApellidos.text.toString(),
-                LocalDate.parse(etFechaNacimiento.text.toString()),
+                etFechaNacimiento.text.toString(),
                 etProfesion.text.toString(),
                 etCelular.text.toString()
             )
         }
         val intent = Intent(this, GoogleMapsActivity::class.java)
-        intent.putExtra("obj",persona as Serializable)
+        intent.putExtra("obj",persona)
         startActivity(intent)
     }
 
     //Función para registrar institución
 
     private fun registrarInstitucion() {
-
+        val institucion: Institucion
+        binding.apply {
+            institucion = Institucion(
+                etEmail.text.toString(),
+                etPassword.text.toString(),
+                etNombreIns.text.toString(),
+                etAreaIns.text.toString(),
+                etCelular.text.toString()
+            )
+        }
+        val intent = Intent(this, GoogleMapsActivity::class.java)
+        intent.putExtra("obj",institucion)
+        startActivity(intent)
     }
 
     //Funciones para habilitar los botones en el registro de usuario
